@@ -2,7 +2,10 @@ import Layout from "../../components/layout";
 import { initializeApollo, addApolloState } from "../../lib/apolloClient";
 import { gql } from "@apollo/client";
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps(props) {
+  console.log("Countries");
+  console.log(props);
+
   const client = initializeApollo();
 
   const CITIES_OF_COUNTRY = gql`
@@ -19,7 +22,7 @@ export async function getStaticProps({ params }) {
   const citiesData = await client.query({
     query: CITIES_OF_COUNTRY,
     variables: {
-      ctry: params.id,
+      ctry: props.params.id,
     },
   });
 
@@ -50,11 +53,12 @@ export async function getStaticPaths() {
   };
 }
 
-export default function Post({ citiesData }) {
-  console.group(citiesData);
+export default function Country(pageProps) {
+  // console.group(citiesData);
   return (
     <Layout>
-      {citiesData.data.cities.map((c) => (
+      {pageProps.test}
+      {pageProps.citiesData.data.cities.map((c) => (
         <p key={c.name}> {c.name} </p>
       ))}
       <br />

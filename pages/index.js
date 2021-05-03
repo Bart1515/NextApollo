@@ -30,12 +30,8 @@ export async function getStaticProps() {
   };
 }
 
-const Hello = () => {
-  return <div>tja</div>;
-};
-
 export default function Home(props) {
-  // console.log("tezt: " + JSON.stringify(props));
+  //console.log("test: " + JSON.stringify(props));
   return (
     <div className={styles.container}>
       {props.allCountriesData.data.countries.map((country) => (
@@ -46,6 +42,10 @@ export default function Home(props) {
     </div>
   );
 }
+
+// const Hello = () => {
+//   return <div>tja</div>;
+// };
 
 // export default function Home({ allCountriesData }) {
 //   return (
